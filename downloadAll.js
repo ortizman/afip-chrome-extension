@@ -22,8 +22,9 @@
         return new Promise(function (resolve) {
             var httpRequest = new XMLHttpRequest();
             httpRequest.open("GET", url + id);
-            httpRequest.onload = function () {
-                zip.file(id, this.responseText);
+            httpRequest.responseType = "blob";
+            httpRequest.onloadend = function () {
+                zip.file(id + ".zip", this.response, { binary: true });
                 resolve()
             }
             httpRequest.send()
@@ -35,8 +36,6 @@
         console.log(urlDownload + id)
         return request(urlDownload, id)
     })).then(function () {
-        console.log(zip);
-        
         zip.generateAsync({
             type: "blob"
         })
@@ -47,7 +46,7 @@
                 a.innerHTML = "<span> Descargar todas juntas </span>";
 
                 document.querySelector("#contenido").insertBefore(a, btn)
-                
+
             });
     })
 })();

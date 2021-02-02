@@ -5,7 +5,6 @@ changeColor.onclick = function (element) {
         function (tabs) {
             chrome.tabs.executeScript(
                 tabs[0].id,
-                { file: 'downloadAll.js' },
-                (promise) => alert(JSON.stringify(promise)))
+                { file: 'downloadAll.js' })
         });
 };
