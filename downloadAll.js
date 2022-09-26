@@ -51,7 +51,7 @@ function AfipRegistros() {
 }
 
 (function () {
-    let urlDownload = 'https://serviciosjava2.afip.gob.ar/rcel/jsp/exportarComprobante.do?t=v&c=';
+    let urlDownload = 'https://fe.afip.gob.ar/rcel/jsp/exportarComprobante.do?t=v&c=';
 
     // collect all ids
 
