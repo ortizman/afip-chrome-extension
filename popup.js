@@ -1,17 +1,8 @@
-let changeColor = document.getElementById('changeColor');
+document.getElementById('changeColor').onclick = async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-changeColor.onclick = function (element) {
-    chrome.tabs.query({ active: true, currentWindow: true },
-        function (tabs) {
-            chrome.tabs.executeScript(
-                tabs[0].id,
-                { file: 'jszip.min.js' },
-                () => {
-                    chrome.tabs.executeScript(
-                        tabs[0].id,
-                        { file: 'downloadAll.js' })
-                }
-            )
-            
-        });
+  await chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['jszip.min.js', 'downloadAll.js']
+  });
 };
